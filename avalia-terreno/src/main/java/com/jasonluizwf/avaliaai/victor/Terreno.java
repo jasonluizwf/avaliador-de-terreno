@@ -16,8 +16,8 @@ public class Terreno {
 	private final Pedologia pedologia;
 	private final ElementoDeProtecao elementoDeProtecao;
 	private final SituacaoDoTerreno situacao;
-	private OcupacaoDoSolo ocupacaoDoSolo;
-	private EquipamentosEServicos equipamentosEServicos;
+	private final OcupacaoDoSolo ocupacaoDoSolo;
+	private final EquipamentosEServicos equipamentosEServicos;
 	private GerenciadorDeSetores gerenciadorDeSetores;
 
 	// Construtor para iniciar as instancias
@@ -27,6 +27,8 @@ public class Terreno {
 		this.pedologia = new Pedologia();
 		this.elementoDeProtecao = new ElementoDeProtecao();
 		this.situacao = new SituacaoDoTerreno();
+		this.ocupacaoDoSolo = new OcupacaoDoSolo();
+		this.equipamentosEServicos = new EquipamentosEServicos();
     }
 
 	public double getValorVenalDoTerreno() {
@@ -36,13 +38,12 @@ public class Terreno {
 		double fc15 = pedologia.getValorPedologia();
 		double fc16 = elementoDeProtecao.getValorElementoDeProtecao();
 		double fc17 = situacao.getValorSituacao();
+		double fc18 = ocupacaoDoSolo.getValorOcupacaoDoSolo();
+		double fc50 = equipamentosEServicos.getValorRedeDeAgua();
 
-		// CONTINUAR DA OCUPAÇÃO DO SOLO *******
 		/* 
 		 
 		
-		double fc18 = ocupacaoDoSolo.getocupacaoDoSoloMap(ocupacaoDoSoloChave);
-		double fc50 = equipamentosEServicos.getRedeDeAguaMap(redeDeAguaChave);
 		double fc51 = equipamentosEServicos.getRedeDeEsgotoMap(redeDeEsgotoChave);
 		double fc52 = equipamentosEServicos.getRedeEletricaMap(redeEletricaChave);
 		double fc53 = equipamentosEServicos.getRedeTelefonicaMap(redeTelefonicaChave);

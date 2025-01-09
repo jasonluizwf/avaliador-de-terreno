@@ -32,7 +32,7 @@ public class Pedologia {
 		boolean flag = false;
 		double valor = 0;
 		int chave;
-		// COLETAR VALOR DA TOPOLOGIA
+		// COLETAR VALOR DA PEDOLOGIA
 		do {
 			System.out.println("Selecione uma das opções abaixo:");
 			System.out.println("[1] Normal");

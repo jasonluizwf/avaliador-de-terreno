@@ -31,7 +31,7 @@ public class SituacaoDoTerreno {
 		boolean flag = false;
 		double valor = 0;
 		int chave;
-		// COLETAR VALOR DA TOPOLOGIA
+		// COLETAR VALOR DA SITUAÇÃO DO TERRENO
 		do {
 			System.out.println("Selecione uma das opções abaixo:");
 			System.out.println("[1] Meio de quadra");

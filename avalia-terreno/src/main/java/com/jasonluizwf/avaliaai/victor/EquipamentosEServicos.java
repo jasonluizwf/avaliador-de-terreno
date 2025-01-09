@@ -2,35 +2,51 @@ package com.jasonluizwf.avaliaai.victor;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class EquipamentosEServicos {
-	Map<Integer, Double> redeDeAguaMap = new HashMap<>();
-	Map<Integer, Double> redeDeEsgotoMap = new HashMap<>();
-	Map<Integer, Double> redeEletricaMap = new HashMap<>();
-	Map<Integer, Double> redeTelefonicaMap = new HashMap<>();
-	Map<Integer, Double> galeriasPluviaisMap = new HashMap<>();
-	Map<Integer, Double> passeioCalcadaMap = new HashMap<>();
-	Map<Integer, Double> conservacaoDeViasPublicasMap = new HashMap<>();
-	Map<Integer, Double> limpezaPublicaMap = new HashMap<>();
-	Map<Integer, Double> situacaoDoLogradouroMap = new HashMap<>();
-	Map<Integer, Double> iluminacaoPublicaMap = new HashMap<>();
+	private Map<Integer, Double> redeDeAguaMap;
+	private Map<Integer, Double> redeDeEsgotoMap;
+	private Map<Integer, Double> redeEletricaMap;
+	private Map<Integer, Double> redeTelefonicaMap;
+	private Map<Integer, Double> galeriasPluviaisMap;
+	private Map<Integer, Double> passeioCalcadaMap;
+	private Map<Integer, Double> conservacaoDeViasPublicasMap;
+	private Map<Integer, Double> limpezaPublicaMap;
+	private Map<Integer, Double> situacaoDoLogradouroMap;
+	private Map<Integer, Double> iluminacaoPublicaMap;
 
-	public EquipamentosEServicos(Map<Integer, Double> redeDeAguaMap, Map<Integer, Double> redeDeEsgotoMap,
-			Map<Integer, Double> redeEletricaMap, Map<Integer, Double> redeTelefonicaMap,
-			Map<Integer, Double> galeriasPluviaisMap, Map<Integer, Double> passeioCalcadaMap,
-			Map<Integer, Double> conservacaoDeViasPublicasMap, Map<Integer, Double> limpezaPublicaMap,
-			Map<Integer, Double> situacaoDoLogradouroMap, Map<Integer, Double> iluminacaoPublicaMap) {
-		super();
-		this.redeDeAguaMap = redeDeAguaMap;
-		this.redeDeEsgotoMap = redeDeEsgotoMap;
-		this.redeEletricaMap = redeEletricaMap;
-		this.redeTelefonicaMap = redeTelefonicaMap;
-		this.galeriasPluviaisMap = galeriasPluviaisMap;
-		this.passeioCalcadaMap = passeioCalcadaMap;
-		this.conservacaoDeViasPublicasMap = conservacaoDeViasPublicasMap;
-		this.limpezaPublicaMap = limpezaPublicaMap;
-		this.situacaoDoLogradouroMap = situacaoDoLogradouroMap;
-		this.iluminacaoPublicaMap = iluminacaoPublicaMap;
+	public EquipamentosEServicos() {
+		if (redeDeAguaMap == null) {
+			redeDeAguaMap = new HashMap<>();
+		}
+		if (redeDeEsgotoMap == null) {
+			redeDeEsgotoMap = new HashMap<>();
+		}
+		if (redeEletricaMap == null) {
+			redeEletricaMap = new HashMap<>();
+		}
+		if (redeTelefonicaMap == null) {
+			redeTelefonicaMap = new HashMap<>();
+		}
+		if (galeriasPluviaisMap == null) {
+			galeriasPluviaisMap = new HashMap<>();
+		}
+		if (passeioCalcadaMap == null) {
+			passeioCalcadaMap = new HashMap<>();
+		}
+		if (conservacaoDeViasPublicasMap == null) {
+			conservacaoDeViasPublicasMap = new HashMap<>();
+		}
+		if (limpezaPublicaMap == null) {
+			limpezaPublicaMap = new HashMap<>();
+		}
+		if (situacaoDoLogradouroMap == null) {
+			situacaoDoLogradouroMap = new HashMap<>();
+		}
+		if (iluminacaoPublicaMap == null) {
+			iluminacaoPublicaMap = new HashMap<>();
+		}
 
 		redeDeAguaMap.put(1, 120.0);
 		redeDeAguaMap.put(2, 100.0);
@@ -66,8 +82,40 @@ public class EquipamentosEServicos {
 
 	}
 
-	public double getRedeDeAguaMap(int chave) {
+	private double valorRedeDeAgua(int chave) {
+		if (redeDeAguaMap.get(chave) == null) {
+	        throw new IllegalArgumentException("Chave não encontrada em equipamentos e serviços: " + chave);
+	    }
 		return redeDeAguaMap.get(chave);
+	}
+	public double getValorRedeDeAgua() {
+		Scanner scanner = ScannerManager.getScanner();
+		boolean flag = false;
+		double valor = 0;
+		int chave;
+		// COLETAR VALOR DA REDE DE ÁGUA
+		do {
+			System.out.println("Selecione uma das opções abaixo:");
+			System.out.println("Tem rede de água?");
+			System.out.println("[1] Sim");
+			System.out.println("[2] Não");
+			System.out.print("Escolha: ");
+			try {
+				chave = scanner.nextInt();
+				// Validação do número dentro do intervalo
+				if (redeDeAguaMap.containsKey(chave)) {
+					flag = true; // Valor válido, sai do loop
+					valor = valorRedeDeAgua(chave);
+				} else {
+					System.out.println("Erro: O número deve ser entre 1 e 2. Tente novamente.");
+				}
+			} catch (Exception e) {
+				System.out.println("Erro: Entrada inválida. Digite um número válido. Tente novamente.");
+				scanner.nextLine(); // Limpa a entrada inválida
+			}
+		} while (!flag);
+		return valor;
+
 	}
 
 	public double getRedeDeEsgotoMap(int chave) {
