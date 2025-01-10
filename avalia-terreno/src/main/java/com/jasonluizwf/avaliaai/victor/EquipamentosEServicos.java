@@ -84,7 +84,7 @@ public class EquipamentosEServicos {
 
 	private double valorRedeDeAgua(int chave) {
 		if (redeDeAguaMap.get(chave) == null) {
-	        throw new IllegalArgumentException("Chave não encontrada em equipamentos e serviços: " + chave);
+	        throw new IllegalArgumentException("Chave não encontrada em rede de água: " + chave);
 	    }
 		return redeDeAguaMap.get(chave);
 	}
@@ -118,8 +118,41 @@ public class EquipamentosEServicos {
 
 	}
 
-	public double getRedeDeEsgotoMap(int chave) {
+	private double valorRedeDeEsgoto(int chave) {
+		if (redeDeEsgotoMap.get(chave) == null) {
+	        throw new IllegalArgumentException("Chave não encontrada para rede de esgoto: " + chave);
+	    }
 		return redeDeEsgotoMap.get(chave);
+	}
+
+	public double getValorRedeDeEsgoto() {
+		Scanner scanner = ScannerManager.getScanner();
+		boolean flag = false;
+		double valor = 0;
+		int chave;
+		// COLETAR VALOR DA REDE DE ESGOTO
+		do {
+			System.out.println("Selecione uma das opções abaixo:");
+			System.out.println("Tem rede de esgoto?");
+			System.out.println("[1] Sim");
+			System.out.println("[2] Não");
+			System.out.print("Escolha: ");
+			try {
+				chave = scanner.nextInt();
+				// Validação do número dentro do intervalo
+				if (redeDeEsgotoMap.containsKey(chave)) {
+					flag = true; // Valor válido, sai do loop
+					valor = valorRedeDeEsgoto(chave);
+				} else {
+					System.out.println("Erro: O número deve ser entre 1 e 2. Tente novamente.");
+				}
+			} catch (Exception e) {
+				System.out.println("Erro: Entrada inválida. Digite um número válido. Tente novamente.");
+				scanner.nextLine(); // Limpa a entrada inválida
+			}
+		} while (!flag);
+		return valor;
+
 	}
 
 	public double getRedeEletricaMap(int chave) {

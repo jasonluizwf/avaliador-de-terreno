@@ -40,11 +40,11 @@ public class Terreno {
 		double fc17 = situacao.getValorSituacao();
 		double fc18 = ocupacaoDoSolo.getValorOcupacaoDoSolo();
 		double fc50 = equipamentosEServicos.getValorRedeDeAgua();
+		double fc51 = equipamentosEServicos.getValorRedeDeEsgoto();
 
 		/* 
 		 
 		
-		double fc51 = equipamentosEServicos.getRedeDeEsgotoMap(redeDeEsgotoChave);
 		double fc52 = equipamentosEServicos.getRedeEletricaMap(redeEletricaChave);
 		double fc53 = equipamentosEServicos.getRedeTelefonicaMap(redeTelefonicaChave);
 		double fc54 = equipamentosEServicos.getGaleriasPluviaisMap(galeriaPluviaisChave);
